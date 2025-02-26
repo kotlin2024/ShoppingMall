@@ -28,9 +28,10 @@ public class SecurityConfig {
                                         "/v3/api-docs/**",
                                         "/swagger-resources/**",
                                         "/swagger-ui.html",
-                                        "swagger-ui/index.html#"
-                                ).permitAll()  // 특정 URL에 대해 인증을 허용
-                                .anyRequest().authenticated()  // 그 외 모든 요청은 인증 필요
+                                        "swagger-ui/index.html#",
+                                        "/member/**"
+                                ).permitAll()
+                                .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)  // JWT 필터 추가
                 .build();

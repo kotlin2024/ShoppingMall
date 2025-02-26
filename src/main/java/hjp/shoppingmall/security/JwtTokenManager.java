@@ -24,9 +24,6 @@ public class JwtTokenManager {
 
     @PostConstruct
     public void init() {
-        // secret 값이 제대로 주입되었는지 확인
-        System.out.println("Issuer: " + jwtProperties.getIssuer());  // issuer 값 확인
-        System.out.println("Secret: " + jwtProperties.getSecret());  // secret 값 확인
 
         if (jwtProperties.getSecret() == null || jwtProperties.getSecret().isEmpty()) {
             throw new IllegalArgumentException("JWT secret cannot be null or empty");
