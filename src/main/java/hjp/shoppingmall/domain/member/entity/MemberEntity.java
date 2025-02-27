@@ -12,6 +12,8 @@ import java.time.LocalDateTime;
 @Table(name = "member")
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 public class MemberEntity {
 
     @Id

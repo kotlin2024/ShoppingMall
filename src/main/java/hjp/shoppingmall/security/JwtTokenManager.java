@@ -32,16 +32,20 @@ public class JwtTokenManager {
     }
 
     private String generateToken(String subject, int expirationTime, String memberRole) {
-        Claims claims = Jwts.claims().build();
+
+        ClaimsBuilder claimsBuilder = Jwts.claims();
+
+        claimsBuilder.subject(subject);
+        claimsBuilder.add("memberRole", memberRole);
+
+        Claims claims = claimsBuilder.build();
         Instant now = Instant.now();
-        claims.put("memberRole", memberRole);
 
         return Jwts.builder()
-                .subject(subject)
+                .claims(claims)
                 .issuer(jwtProperties.getIssuer())
                 .issuedAt(Date.from(now))
                 .expiration(new Date(System.currentTimeMillis() + expirationTime))
-                .claims(claims)
                 .signWith(Keys.hmacShaKeyFor(key))
                 .compact();
     }
