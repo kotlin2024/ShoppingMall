@@ -32,7 +32,7 @@ public class UserPrincipal {
         this.memberId = memberId;
         this.memberRole = memberRole != null ? memberRole : java.util.Collections.emptySet();
         this.authorities = memberRole.stream()
-                .map(role -> new SimpleGrantedAuthority(role))
+                .map(role -> new SimpleGrantedAuthority("ROLE_"+role))
                 .collect(Collectors.toList());
     }
 
